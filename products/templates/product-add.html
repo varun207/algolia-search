@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group mt-2">
+            <label for="exampleFormControlInput1">Product Name</label>
+            <input type="text" class="form-control" name="name" id="name" >
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Model Number</label>
+            <input type="text" class="form-control" name="model-number" id="model-number" >
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">character</label>
+            <input type="text" class="form-control" name="character" id="character">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">brand</label>
+            <input type="text" class="form-control" name="brand" id="brand">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">description</label>
+            <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary btn-md">
+    </form>
+</div>
+{% endblock %}

@@ -20,9 +20,11 @@
 
 {% verbatim %}
 <script type="text/template" id="autocomplete">
-<p>
     <a href="/product/{{{ objectID }}}">{{{ _highlightResult.name.value }}}</a>
-</p>
+    <script type="text/javascript">
+        window.location = "http://127.0.0.1:8000/product/{{{ objectID }}}";
+    </script>
+
 </script>
 {% endverbatim %}
 

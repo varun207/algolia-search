@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dff8f36d-f43e-4d2e-a712-1cdabb58d6f8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algolia/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/algolia/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loose.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/loose.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/templates/product-search.html" beforeDir="false" afterPath="$PROJECT_DIR$/products/templates/product-search.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/products/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/products/templates/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/products/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/products/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +97,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

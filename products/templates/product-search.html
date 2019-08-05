@@ -1,10 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <br>
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+            <input id="q" name="q" placeholder="Search" autocomplete="off" autocorrect="false" spellcheck="false" class="form-control" type="search" />
+          </div>
+        </div>
+
+        <form autocomplete="off" action="/action_page.php">
+          <div class="autocomplete" style="width:300px;">
+            <input id="myInput" type="text" name="myCountry" placeholder="Country">
+          </div>
+          <input type="submit">
+        </form>
+
+
+        <div class="row">
+          <div class="col-sm-12" id="hits-stat">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div id="no-hits" class="col-sm-12 hidden"></div>
+              <div class="row">
+
+                  <div id="hits">
+
+                    </div>
+
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/hogan.js/3.0.2/hogan.min.js"></script>
+
+{% verbatim %}
+<script type="text/template" id="hit-template">
+
+    <div class="col-md-4" style="margin: 10px 0">
+    <h1><a href="/product/{{{ objectID }}}">{{{ _highlightResult.name.value }}}</a></h1>
+    <p>{{{ _highlightResult.character.value }}}</p>
+    <p>{{{ _highlightResult.brand.value }}}</p>
+    <p>{{{ _highlightResult.model_number.value }}}</p>
+    <p>{{{ _highlightResult.description.value }}}</p>
+    </div>
+</script>
+{% endverbatim %}
+
+<script>
+$(document).ready(function() {
+  var $inputField = $('#q');
+  var $hits = $('#hits');
+  var $hitsTable = $('#hits-table');
+  var $noHits = $('#no-hits');
+  var $hitsStat = $('#hits-stat');
+  var hitTemplate = Hogan.compile($('#hit-template').text());
+  var client = algoliasearch('{{ appID }}', '{{ searchKey }}');
+  var helper = algoliasearchHelper(client, '{{ indexName }}');
+
+  console.log('{{ appID }}')
+
+  $('.search-terms a').click(function(e) {
+    $inputField.val($(this).text()).change().focus();
+    $inputField.keyup();
+    alert("Hello")
+  });
+
+
+  $inputField.on('keyup', function() {
+    var query = $inputField.val();
+    helper.setQuery(query).search();
+  }).focus();
+
+  helper.on('result', function(data) {
+    renderHits(data);
+  });
+
+  helper.search(); // first search
+
+  function renderHits(content) {
+      console.log(content.hits)
+    var hitsHtml = '';
+    if (content.hits.length === 0) {
+      {#hitsHtml = '<p class="text-center text-danger lead">We didn\'t find any results for your search.</p>';#}
+      $noHits.html(hitsHtml);
+      $noHits.removeClass('hidden');
+      $hitsTable.addClass('hidden');
+    } else {
+      for (var i = 0; i < content.hits.length; ++i) {
+        hitsHtml += hitTemplate.render(content.hits[i]);
+      }
+      $hits.html(hitsHtml);
+      $hitsTable.removeClass('hidden');
+      $noHits.addClass('hidden');
+    }
+    $hitsStat.html('<p class="text-right">Found <b>' +
+        content.nbHits + '</b> results in <b>' + content.processingTimeMS + '</b>ms, ' +
+        'by <a href="http://www.algolia.com"><img src="{% static "img/logo-algolia.png" %}" /></a></p>'
+    );
+  }
+});
+
+</script>
+{% endblock %}
+

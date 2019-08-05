@@ -57,8 +57,8 @@ MIDDLEWARE = [
 
 # Algolia config
 ALGOLIA = {
-    'APPLICATION_ID': "<APPLICATION_ID>",
-    'API_KEY': "<API_KEY>",
+    'APPLICATION_ID': '5MOBI7FV78',
+    'API_KEY': '7a2c03f64a54f740cea34a137587a887'
 }
 
 ROOT_URLCONF = 'algolia.urls'
